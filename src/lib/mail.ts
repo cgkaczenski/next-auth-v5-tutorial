@@ -16,3 +16,16 @@ export const sendVerificationEmail = async (email: string, token: string) => {
 
   await sgMail.send(msg);
 };
+
+export const sendPasswordResetEmail = async (email: string, token: string) => {
+  const resetLink = `http://localhost:3000/auth/new-password?token=${token}`;
+
+  const msg = {
+    from: ADMIN_EMAIL,
+    to: email,
+    subject: "Reset your password",
+    html: `<p>Click <a href="${resetLink}">here</a> to reset password.</p>`,
+  };
+
+  await sgMail.send(msg);
+};
