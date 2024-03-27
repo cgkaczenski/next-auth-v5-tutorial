@@ -29,3 +29,14 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
 
   await sgMail.send(msg);
 };
+
+export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
+  const msg = {
+    from: ADMIN_EMAIL,
+    to: email,
+    subject: "2FA Code",
+    html: `<p>Your 2FA code: ${token}</p>`,
+  };
+
+  await sgMail.send(msg);
+};
