@@ -32,7 +32,8 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
 
   if (!existingUser.emailVerified) {
     const verificationToken = await generateVerificationToken(
-      existingUser.email
+      existingUser.email,
+      existingUser.id
     );
 
     await sendVerificationEmail(
